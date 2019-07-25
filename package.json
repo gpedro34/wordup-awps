@@ -4,8 +4,8 @@
   "description": "docker-compose.yml extends the base WP + MySQL",
   "main": "index.js",
   "scripts": {
-    "new-theme": "wordup install && cd src/themes/ && git clone https://github.com/Alecaddd/awps.git && rm .env.sample && rm wp-config.php && rm -rf .git && composer install && npm install",
-    "up-config": "sudo cp ./wp-config/.env /var/lib/docker/volumes/test-installation_wp_data/_data/.env && sudo cp ./wp-config/wp-config.php /var/lib/docker/volumes/test-installation_wp_data/_data/wp-config.php"
+    "new-theme": "wordup install && cd src/themes/ && git clone https://github.com/Alecaddd/awps.git && rm .env.sample && rm wp-config.php && rm -rf .git && composer install && npm install && npm run up-config",
+    "up-config": "sudo cp ./wp-config/.env /var/lib/docker/volumes/YOUR-PROJECT-NAME-HERE_wp_data/_data/.env && sudo cp ./wp-config/wp-config.php /var/lib/docker/volumes/YOUR-PROJECT-NAME-HERE_wp_data/_data/wp-config.php"
   },
   "keywords": [],
   "author": "",
