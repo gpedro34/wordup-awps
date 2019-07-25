@@ -1,0 +1,45 @@
+# This is the wordup config:
+# - You can customize two things here:
+# - Your wordup specific config and the config of your WordPress installation
+# Documentation: https://docs.wordup.dev
+
+# A wordup project is either of type 'plugins', 'themes' or 'installation'
+type: installation
+
+# The internal project name
+projectName: test-installation
+
+# The slug of your project. CAUTION: You have to reinstall your dev server, when you change the slug.
+slug: test-installation
+
+# Change the default port of 8000
+port: 8000
+
+# Change the src folder. Default: src
+#srcFolder: source
+
+# Change the dist folder. Default: dist
+#distFolder: build
+
+# WordPress installation config
+wpInstall:
+  title: test-installation
+  language: pt_PT
+  users:
+    - name: gpedro
+      password: 123456
+      email: admin@test.com
+      role: administrator
+  # Custom roles
+  # roles:
+  #   - name: A Custom editor role
+  #     key: custom_role
+  #     clone_from: editor
+  #     capabilities:
+  #       - view_products
+  #       - read_products
+  #       - build_products
+  # Plugins you need for your project
+  plugins: {}
+  # Themes you need for your project
+  themes: {}
