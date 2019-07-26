@@ -8,11 +8,10 @@
 
 There is no need to use the awps-cli. But you can!
 
-1. If you have it installed, just run `npm run new:awps`
-2. Then change your .env or wp-config.php files.
-3. Then make sure to run `npm run update:wp` after.
-
-Also, make sure you have PHP with zip extension installed and composer bin folder in your sysem path or it won'r work.
+1. If you have awps in your system PATH, just run `npm run new:awps`
+2. Then change your .env or wp-config.php files on the root of the project.
+**NOTE:** Order is important!!! awps-cli replaces the original .env file of this repo so make sure to change it after you run awps-cli
+3. Finnaly make sure to run `npm run update:wp` after.
 
 # Usage
 
@@ -25,7 +24,8 @@ git clone https://github.com/gpedro34/wordup-awps.git YOUR-PROJECT-NAME-HERE
 2. Go into YOUR-PROJECT-NAME-HERE/.wordup/ and change your configurations. [Refer to Wordup documentation](https://docs.wordup.dev/config)
 3. Next you need to change your .env file inside YOUR-PROJECT-NAME-HERE folder and verify wp-options.php
 4. Then open package.json in the YOUR-PROJECT-NAME-HERE folder and edit all instances of "YOUR-PROJECT-NAME-HERE" and "your-project-name-here" by the name of your project (use dashes) and "YOUR_THEME_NAME_HERE" by your theme name (do not use dashes)
-5. Once everything is configured properly, run `npm run new:git` and grab a coffee while the engines fire!
+5. Once everything is configured properly, run `npm run new:git` and grab a coffee while the engines fire!  
+**NOTE:** You may be prompt for sudo password at the end in order to access the docker volume and inject .env and wp-config.php into the running docker environment
 
 The above command should:
 
@@ -35,7 +35,6 @@ The above command should:
 - Installed composer modules
 - Installed npm modules
 - Copy wp-config.php and .env to the root of your wordpress installation (sudo command)
-  **NOTE:** You may be prompt for sudo password at the end in order to access the docker volume and plave .env and wp-config.php
 
 # Considerations
 
@@ -76,14 +75,12 @@ AWPS uses [Laravel Mix](https://laravel.com/docs/5.6/mix) for assets management.
 
 ### Linux
 
-As the wordpress container wordup launches already a volume called YOUR-PROJECT-NAME-HERE-wp_data we can use:
+As the wordpress container wordup launches already a volume called "your-project-name-here_wp_data" that we can inject the files to:
 
 ```bash
-sudo cp ./wp-config/.env /var/lib/docker/volumes/test-installation_wp_data/_data/.env
-sudo cp ./wp-config/wp-config.php /var/lib/docker/volumes/test-installation_wp_data/_data/wp-config.php
+sudo cp .env /var/lib/docker/volumes/your-project-name-here_wp_data/_data/.env
+sudo cp wp-config.php /var/lib/docker/volumes/your-project-name-here_wp_data/_data/wp-config.php
 ```
-
-to access replace the files.
 
 For convenience there is a npm script to handle this.
 
@@ -96,7 +93,7 @@ npm run up-config
 ### Windows and Mac
 
 May have to fallback to something in the lines of the [4th or 5th answers](https://stackoverflow.com/questions/22907231/copying-files-from-host-to-docker-container)
-Or use a container to access the volume. Although this may require wordpress restart.
+Or maybe use a bind mount to the running wordpress container and then execute a copy command to /var/www/html/.
 
 ## Features
 
@@ -128,4 +125,4 @@ Or use a container to access the volume. Although this may require wordpress res
 
 ### This repository
 
-- Combines all of the above in a simple npm package to automate the creation of wordpress theme boilerplates
+- Combines all of the above in a simple npm package in order to automate the creation of wordpress theme boilerplates using the wordup development environment built on top of Docker and VSCode.
