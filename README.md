@@ -27,11 +27,11 @@ git clone https://github.com/gpedro34/wordup-awps.git YOUR-PROJECT-NAME-HERE
 5. Once everything is configured properly, run `npm run new:git` and grab a coffee while the engines fire!  
 **NOTE:** You may be prompt for sudo password at the end in order to access the docker volume and inject .env and wp-config.php into the running docker environment
 
-The above command should:
+The above command should have:
 
 - Setup the docker containers (WP, wp-cli, mysql)
 - Setup a new theme called YOUR_THEME_NAME_HERE inside YOUR-PROJECT-NAME-HERE/src/themes/
-- Move the .env.sample, wp-options-sample.php and .git folder of the awps theme
+- Remove the .env.sample, wp-options-sample.php and reinitialized git for the new theme
 - Installed composer modules
 - Installed npm modules
 - Copy wp-config.php and .env to the root of your wordpress installation (sudo command)
