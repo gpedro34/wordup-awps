@@ -1,13 +1,44 @@
 {
-  "name": "test-installation",
+  "name": "wordup-awps",
   "version": "1.0.0",
-  "description": "docker-compose.yml extends the base WP + MySQL",
-  "main": "index.js",
+  "description": "A boilerplate for Wordpress theme building using wordup and awps theme boilerplate",
   "scripts": {
-    "new-theme": "wordup install && cd src/themes/ && git clone https://github.com/Alecaddd/awps.git && rm .env.sample && rm wp-config.php && rm -rf .git && composer install && npm install && npm run up-config",
-    "up-config": "sudo cp ./wp-config/.env /var/lib/docker/volumes/YOUR-PROJECT-NAME-HERE_wp_data/_data/.env && sudo cp ./wp-config/wp-config.php /var/lib/docker/volumes/YOUR-PROJECT-NAME-HERE_wp_data/_data/wp-config.php"
+    "wordup": "wordup install",
+    "install:all": "cd wp-content/themes/YOUR_THEME_NAME_HERE/ && composer install && npm install",
+
+    "git": "cd wp-content/themes/ && git clone https://github.com/Alecaddd/awps.git YOUR_THEME_NAME_HERE && cd YOUR_THEME_NAME_HERE && rm .env.example && rm wp-config.sample.php && rm -rf .git && git init",
+    "awps": "cd wp-content/themes/ && awps new YOUR_THEME_NAME_HERE -n",
+
+    "update:wp": "npm run update:env && npm run update:config",
+    "update:config": "sudo cp wp-config.php /var/lib/docker/volumes/your-project-name-here_wp_data/_data/wp-config.php",
+    "update:env": "sudo cp .env /var/lib/docker/volumes/your-project-name-here_wp_data/_data/.env",
+
+    "d-c:up": "docker-compose -f d-c.yml up -d",
+    "d-c:down": "docker-compose -f d-c.yml down",
+
+    "new:git": "npm run wordup && npm run git && npm run install:all && npm run update:wp",
+    "new:awps": "npm run wordup && npm run awps && npm run install:all && rm wp-config.sample.php"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "awps",
+    "wordup",
+    "wordpress",
+    "theme",
+    "development",
+    "boilerplate",
+    "nodejs",
+    "laravel",
+    "docker",
+    "vscode"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gpedro34/wordup-awps"
+  },
+  "author": {
+    "name": "Gonçalo Pedro",
+    "email": "gpedro34@gmail.com",
+    "website": "https://netmaster.pt"
+  },
+  "license": "GPL-3.0-or-later"
 }
